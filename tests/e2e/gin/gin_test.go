@@ -4,6 +4,11 @@ package gql
 
 import (
 	"bytes"
+	"net/http"
+	"net/http/httptest"
+	"net/url"
+	"testing"
+
 	"github.com/stretchr/testify/suite"
 	"gorm.io/gorm"
 	"interview/pkg/core/common"
@@ -12,11 +17,6 @@ import (
 	"interview/pkg/infrastructure/repository"
 	"interview/pkg/interface/api"
 	"interview/pkg/logger"
-	"net/http"
-	"net/http/httptest"
-	"net/url"
-
-	"testing"
 )
 
 func TestGqlTestSuite(t *testing.T) {
@@ -47,11 +47,9 @@ func (s *GinTestSuite) SetupSuite() {
 			Cart: cartService,
 		},
 	})
-
 }
 
 func (s *GinTestSuite) TearDownSuite() {
-
 }
 
 func (s *GinTestSuite) TestBaseGql() {
@@ -62,7 +60,7 @@ func (s *GinTestSuite) TestBaseGql() {
 	req.Header.Set("Content-Type", "text/html")
 
 	w := httptest.NewRecorder()
-	//s.api.SetSessionKye()
+	// s.api.SetSessionKye()
 	s.api.ServeHTTP(w, req)
 
 	s.Require().Equal(http.StatusOK, w.Code)
@@ -87,7 +85,6 @@ func (s *GinTestSuite) TestAddItem() {
 }
 
 func (s *GinTestSuite) TestFailedAddItem() {
-
 	formData := url.Values{
 		"product":  {"value1"},
 		"quantity": {"1"},
@@ -103,11 +100,9 @@ func (s *GinTestSuite) TestFailedAddItem() {
 	m, _ := url.ParseQuery(query)
 	s.Require().Equal(m.Get("/?error"), "invalid item name")
 	s.Require().Equal(http.StatusFound, w.Code)
-
 }
 
 func (s *GinTestSuite) TestDeleteItem() {
-
 	req, err := http.NewRequest("GET", "/remove-cart-item?cart_item_id=", nil)
 
 	s.Require().NoError(err)
@@ -117,5 +112,4 @@ func (s *GinTestSuite) TestDeleteItem() {
 	m, _ := url.ParseQuery(query)
 	s.Require().Equal(m.Get("/?error"), "invalid cart item id")
 	s.Require().Equal(http.StatusFound, w.Code)
-
 }

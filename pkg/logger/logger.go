@@ -12,8 +12,6 @@ var General *GeneralLogger
 
 type GeneralLogger struct {
 	*logrus.Entry
-	m        string
-	isServer bool
 }
 
 type Entry struct {
@@ -21,7 +19,7 @@ type Entry struct {
 }
 
 func (e *Entry) LogMode(level logger.LogLevel) logger.Interface {
-	//TODO implement me
+	// TODO implement me
 	panic("implement me")
 }
 
@@ -57,7 +55,6 @@ func Init(m string, disableColors ...bool) {
 	General = &GeneralLogger{
 		Entry: lg.WithField("module", m),
 	}
-
 }
 
 func LogObject(name string, ob interface{}) {

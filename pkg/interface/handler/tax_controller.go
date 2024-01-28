@@ -2,18 +2,19 @@ package handler
 
 import (
 	"fmt"
+	"html/template"
+	"log"
+	"strings"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/google/uuid"
-	"html/template"
 	"interview/pkg/core/common"
 	"interview/pkg/core/dto"
 	"interview/pkg/core/port"
 	errHandler "interview/pkg/interface/error"
 	"interview/static"
-	"log"
-	"strings"
 )
 
 type TaxController struct {
@@ -119,7 +120,7 @@ func getCartItemForm(c *gin.Context) (*dto.CartItemForm, error) {
 
 func renderTemplate(pageData interface{}) (string, error) {
 	// Read and parse the HTML template file
-	//template.ParseFS(static.WebUI)
+	// template.ParseFS(static.WebUI)
 
 	tmpl := template.Must(template.New("").ParseFS(static.WebUI, "*.html"))
 	if tmpl == nil {

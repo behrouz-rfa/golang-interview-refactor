@@ -2,13 +2,14 @@ package service
 
 import (
 	"errors"
+	"strconv"
+
 	"gorm.io/gorm"
 	"interview/pkg/core/dto"
 	"interview/pkg/core/entity"
 	"interview/pkg/core/port"
 	errHandler "interview/pkg/interface/error"
 	"interview/pkg/logger"
-	"strconv"
 )
 
 var itemPriceMapping = map[string]float64{
@@ -26,7 +27,6 @@ type cartService struct {
 type CartServiceParam struct {
 	CartItemRepo   port.CartItemRepository
 	CartEntityRepo port.CartEntityRepository
-	lg             *logger.Entry
 }
 
 func NewCartService(param CartServiceParam) *cartService {
@@ -108,7 +108,10 @@ func (cs cartService) AddItemToCart(addItemForm *dto.CartItemForm, sessionID str
 
 	cartItemEntity.Quantity += int(quantity)
 	cartItemEntity.Price += item * float64(quantity)
-	cs.CartItemRepo.SaveCartItem(&cartItemEntity)
+	err = cs.CartItemRepo.SaveCartItem(&cartItemEntity)
+	if err != nil {
+		cs.lg.WithError(err).Error("SaveCartItem  failed")
+	}
 
 	return nil
 }

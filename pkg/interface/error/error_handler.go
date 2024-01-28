@@ -2,9 +2,10 @@ package error
 
 import (
 	"fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	"interview/pkg/core/errs"
-	"net/http"
 )
 
 func HandleError(c *gin.Context, err error) {
@@ -24,6 +25,4 @@ func HandleError(c *gin.Context, err error) {
 	}
 
 	c.Redirect(302, "/")
-
-	return
 }

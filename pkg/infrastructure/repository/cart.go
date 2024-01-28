@@ -14,6 +14,7 @@ func NewRepository(db *gorm.DB) *Repository {
 		db: db,
 	}
 }
+
 func (u Repository) CreateCartEntity(cartEntity *entity.Cart) error {
 	return u.db.Create(cartEntity).Error
 }

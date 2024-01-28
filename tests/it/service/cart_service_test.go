@@ -1,8 +1,10 @@
-//#go:build integration
+//go:build integration
 
 package service
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/suite"
 	"gorm.io/gorm"
 	"interview/pkg/core/port"
@@ -10,8 +12,6 @@ import (
 	"interview/pkg/infrastructure/db"
 	"interview/pkg/infrastructure/repository"
 	"interview/pkg/logger"
-
-	"testing"
 )
 
 func TestMongoTestSuite(t *testing.T) {
@@ -25,7 +25,6 @@ type CartTestSuite struct {
 }
 
 func (s *CartTestSuite) SetupSuite() {
-
 	logger.Init("SetupSuite")
 	lg := logger.General.Component("main")
 	lg.Println("test started")

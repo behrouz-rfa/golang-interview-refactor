@@ -1,8 +1,9 @@
 package repository
 
 import (
-	"interview/pkg/core/entity"
 	"log"
+
+	"interview/pkg/core/entity"
 )
 
 func (u Repository) DeleteCartItem(cartItemEntity *entity.CartItem) error {

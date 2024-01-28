@@ -2,12 +2,11 @@ package config
 
 import (
 	"fmt"
-	"interview/pkg/logger"
-
 	"log"
 
 	"github.com/Netflix/go-env"
 	"github.com/joho/godotenv"
+	"interview/pkg/logger"
 )
 
 var conf = &Config{}
@@ -22,11 +21,11 @@ type Config struct {
 
 	// Database config
 	Database struct {
-		Host     string `env:"DB_HOST"`
-		Port     int    `env:"DB_PORT"`
-		User     string `env:"DB_USER"`
-		Password string `env:"DB_PASS"`
-		Name     string `env:"DB_NAME"`
+		Host     string `env:"DB_HOST,default=localhost"`
+		Port     int    `env:"DB_PORT,default=4001"`
+		User     string `env:"DB_USER,default=ic_user"`
+		Password string `env:"DB_PASS,default=9xz3jrd8wf"`
+		Name     string `env:"DB_NAME,default=ice_db"`
 	}
 
 	// Env config
@@ -46,7 +45,6 @@ func (c *Config) DBConnectionString() string {
 func Load() {
 	lg := logger.General.Component("config")
 	err := godotenv.Load(".env.local")
-
 	if err != nil {
 		err = godotenv.Load(".env")
 	}

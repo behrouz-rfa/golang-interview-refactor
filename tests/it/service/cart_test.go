@@ -1,9 +1,10 @@
-//#go:build integration
+//go:build integration
 
 package service
 
 import (
 	"fmt"
+
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"interview/pkg/core/dto"
@@ -21,7 +22,6 @@ func (s *CartTestSuite) TestEmptyGetCartData() {
 
 	items := s.cartService.GetCartData(sessionID)
 	assert.Empty(s.T(), items)
-
 }
 
 func (s *CartTestSuite) TestAddItemToCartData() {

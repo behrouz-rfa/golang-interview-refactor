@@ -3,14 +3,14 @@
 package sql
 
 import (
+	"testing"
+
 	"github.com/stretchr/testify/suite"
 	"gorm.io/gorm"
 	"interview/pkg/core/port"
 	db2 "interview/pkg/infrastructure/db"
 	"interview/pkg/infrastructure/repository"
 	"interview/pkg/logger"
-
-	"testing"
 )
 
 func TestMongoTestSuite(t *testing.T) {
@@ -25,7 +25,6 @@ type SqlTestSuite struct {
 }
 
 func (s *SqlTestSuite) SetupSuite() {
-
 	logger.Init("SetupSuite")
 	lg := logger.General.Component("main")
 	lg.Println("test started")

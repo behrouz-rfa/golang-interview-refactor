@@ -37,7 +37,6 @@ func (s *SqlTestSuite) TestCreateCartCreate() {
 	cartEntityGet, err := s.cartEntityRepo.GetCartEntityByStatusAndSessionID(entity.CartOpen, sessionID)
 	assert.Nil(s.T(), err)
 	assert.Equal(s.T(), sessionID, cartEntityGet.SessionID)
-
 }
 
 func (s *SqlTestSuite) TestCartItemRepository() {
@@ -110,7 +109,6 @@ func (s *SqlTestSuite) TestCartRepository() {
 	// Retrieve the cart entity by status and session ID
 	_, err = s.cartEntityRepo.GetCartEntityByStatusAndSessionID(entity.CartClosed, sessionID)
 	assert.NotNil(s.T(), err)
-
 }
 
 func (s *SqlTestSuite) TestSaveCartItem() {

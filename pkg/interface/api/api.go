@@ -2,13 +2,14 @@ package api
 
 import (
 	"fmt"
+	"net/http"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"interview/pkg/core/common"
 	"interview/pkg/interface/handler"
-	"net/http"
 )
 
 // API is the interface for the API server.
@@ -41,7 +42,6 @@ type ServerConfig struct {
 
 // NewServer creates a new API server.
 func NewServer(c *ServerConfig) API {
-
 	ginHandler := gin.Default()
 
 	server := &apiServer{
@@ -106,7 +106,6 @@ func (s *apiServer) SetSessionKye() {
 		SameSite: 0,
 	})
 	s.gin.Use(sessions.Sessions(common.IceSessionIdKey, store))
-
 }
 
 func TestSession(c *gin.Context) {

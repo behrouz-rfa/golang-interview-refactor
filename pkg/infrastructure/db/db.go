@@ -1,16 +1,16 @@
 package db
 
 import (
+	"os"
+
 	"github.com/glebarez/sqlite"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	gormlogger "gorm.io/gorm/logger"
 	entity2 "interview/pkg/core/entity"
-	"os"
 )
 
 func GetDatabase(memory bool, dsn string) *gorm.DB {
-
 	// MySQL connection string
 
 	var db *gorm.DB

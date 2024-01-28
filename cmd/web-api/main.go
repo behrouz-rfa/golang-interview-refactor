@@ -35,5 +35,4 @@ func main() {
 	if err := apiServer.Start(); err != nil {
 		lg.WithError(err).Fatal("failed to start API server")
 	}
-
 }
